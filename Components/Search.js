@@ -2,18 +2,37 @@ import React from 'react'
 import {StyleSheet, View, Button, TextInput, FlatList, Text} from 'react-native'
 import films from '../Helpers/data'
 import FilmItem from './FilmItem'
-
+import { getFilmFromApiWithSearchedText } from '../API/TMDBApi'
 
 class Search extends React.Component
 {
+	constructor(props)
+	{
+		super(props)
+		this.state = {films:[]}
+	}
+	
+	_loadFilms()
+	{
+		if (this.state.searchedText.length > 0)
+		{
+			getFilmFromApiWithSearchedText(this.state.searchedText).then(data => this.setState({films: data.results}))
+		}
+	}
+	
+	_searchTextInputChanged(text)
+	{
+		this.setState({searchedText: text})
+	}
+	
 	render()
 	{
 		return (
 			<View style={styles.main_container}>
-				<TextInput style={styles.textinput} placeholder="recherche"/>
-				<Button title="rechercher" onPress={()=>{}}/>
+				<TextInput onChangeText={(text) => this._searchTextInputChanged(text)} style={styles.textinput} placeholder="recherche"/>
+				<Button title="rechercher" onPress={()=>this._loadFilms()}/>
 				<FlatList
-					data={films}
+					data={this.state.films}
 					keyExtractor={(item) => item.id.toString()}
 					renderItem={({item}) => <FilmItem film={item}/>}
 				/>
