@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, Image } from 'react-native'
 
 class FilmItem extends React.Component {
   render() {
+  	console.log(this.props);
     return (
       <View style={styles.main_container}>
         <Image
