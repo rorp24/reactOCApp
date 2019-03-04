@@ -9,24 +9,28 @@ class Search extends React.Component
 	constructor(props)
 	{
 		super(props)
-		this.state = {films:[]}
+		this.state = {
+		films:[]
+		}
+		this.searchedText = ""
 	}
 	
 	_loadFilms()
 	{
-		if (this.state.searchedText.length > 0)
+		if (this.searchedText.length > 0)
 		{
-			getFilmFromApiWithSearchedText(this.state.searchedText).then(data => this.setState({films: data.results}))
+			getFilmFromApiWithSearchedText(this.searchedText).then(data => this.setState({films: data.results}))
 		}
 	}
 	
 	_searchTextInputChanged(text)
 	{
-		this.setState({searchedText: text})
+		this.searchedText = text
 	}
 	
 	render()
 	{
+		console.log("RENDER");
 		return (
 			<View style={styles.main_container}>
 				<TextInput onChangeText={(text) => this._searchTextInputChanged(text)} style={styles.textinput} placeholder="recherche"/>
