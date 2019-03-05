@@ -1,6 +1,5 @@
 import React from 'react'
 import {StyleSheet, View, Button, TextInput, FlatList, Text, ActivityIndicator} from 'react-native'
-import films from '../Helpers/data'
 import FilmItem from './FilmItem'
 import { getFilmFromApiWithSearchedText } from '../API/TMDBApi'
 
