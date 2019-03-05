@@ -24,6 +24,7 @@ class Search extends React.Component
 		{
 			this.setState({isLoading: true})
 			getFilmFromApiWithSearchedText(this.searchedText, this.page + 1).then(data =>{
+				console.log("page:"+this.page)
 				this.page = data.page
 				this.totalPages = data.total_pages
 				this.setState(
@@ -98,7 +99,6 @@ const styles = StyleSheet.create({
 	main_container: 
 	{
 		flex:1,
-		marginTop:25
 	},
 	textinput: 
 	{
