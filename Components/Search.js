@@ -69,11 +69,11 @@ class Search extends React.Component
 	
 	_displayDetailForFilm = (idFilm) => {
 		console.log ("Display film with id" + idFilm)
+		this.props.navigation.navigate("FilmDetail", {idFilm: idFilm})
 	}
 	
 	render()
 	{
-		console.log(this.props);
 		return (
 			<View style={styles.main_container}>
 				<TextInput onSubmitEditing={() => this._searchFilms()} onChangeText={(text) => this._searchTextInputChanged(text)} style={styles.textinput} placeholder="recherche"/>
